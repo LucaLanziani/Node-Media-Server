@@ -961,6 +961,9 @@ const rtmpCmdCode = {
   "pause": ["transId", "cmdObj", "pause", "ms"]
 };
 
+rtmpCmdCode["startPublish"] = ["transId", "cmdObj"] // Enable stream from sony RDF-X3000 ustream]
+rtmpCmdCode["stopPublish"] = ["transId", "cmdObj"] // Enable stream from sony RDF-X3000 ustream]
+
 const rtmpDataCode = {
   "@setDataFrame": ["method", "dataObj"],
   "onMetaData": ["dataObj"],

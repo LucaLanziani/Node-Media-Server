@@ -819,7 +819,14 @@ class NodeRtmpSession {
       case 'receiveVideo':
         this.onReceiveVideo(invokeMessage);
         break;
+      case 'startPublish': // Sony FDR-X3000
+        this.respondFakeSonyResult(invokeMessage.transId);
+        break;
+      case 'stopPublish': // Sony FDR-X3000
+        this.respondFakeSonyResult(invokeMessage.transId);
+        break;
     }
+
   }
 
   sendACK(size) {
@@ -928,6 +935,17 @@ class NodeRtmpSession {
         description: 'Connection succeeded.',
         objectEncoding: this.objectEncoding
       }
+    };
+    this.sendInvokeMessage(0, opt);
+  }
+
+  respondFakeSonyResult(tid) { // Sony FDR-X3000
+    this.streams++;
+    let opt = {
+      cmd: "_result",
+      transId: tid,
+      cmdObj: null,
+      info: this.streams
     };
     this.sendInvokeMessage(0, opt);
   }
