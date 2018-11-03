@@ -969,7 +969,7 @@ class NodeRtmpSession {
   }
 
   onConnect(invokeMessage) {
-    invokeMessage.cmdObj.app = invokeMessage.cmdObj.app.replace('/', ''); //fix jwplayer
+    // invokeMessage.cmdObj.app = invokeMessage.cmdObj.app.replace('/', ''); //fix jwplayer
     if (!this.isIPC) {
       context.nodeEvent.emit('preConnect', this.id, invokeMessage.cmdObj);
     }
