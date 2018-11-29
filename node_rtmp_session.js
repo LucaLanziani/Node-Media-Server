@@ -820,10 +820,13 @@ class NodeRtmpSession {
         this.onReceiveVideo(invokeMessage);
         break;
       case 'startPublish': // Sony FDR-X3000
-        this.respondFakeSonyResult(invokeMessage.transId);
+        this.respondFakeSonyResult(invokeMessage.transId, "broadcastStarted");
+        break;
+      case 'callModule':
+        this.respondFakeSonyResult(invokeMessage.transId, "recordStarted");
         break;
       case 'stopPublish': // Sony FDR-X3000
-        this.respondFakeSonyResult(invokeMessage.transId);
+        this.respondFakeSonyResult(invokeMessage.transId, "_result");
         break;
     }
 
@@ -939,10 +942,10 @@ class NodeRtmpSession {
     this.sendInvokeMessage(0, opt);
   }
 
-  respondFakeSonyResult(tid) { // Sony FDR-X3000
+  respondFakeSonyResult(tid, message) { // Sony FDR-X3000
     this.streams++;
     let opt = {
-      cmd: "_result",
+      cmd: message,
       transId: tid,
       cmdObj: null,
       info: this.streams
